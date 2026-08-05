@@ -1,0 +1,14 @@
+{
+	"$schema": "./node_modules/wrangler/config-schema.json",
+	"name": "${APP_NAME}",
+	"compatibility_date": "2026-08-05",
+	"compatibility_flags": ["nodejs_als"],
+	${MODE_CONFIG},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "${DB_NAME}",
+			"database_id": "${DB_ID}"
+		}
+	]
+}
