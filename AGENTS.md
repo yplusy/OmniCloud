@@ -1,7 +1,7 @@
 ## Project Configuration
 
 - **Language**: JavaScript (JSDoc)
-- **Package Manager**: npm
+- **Package Manager**: pnpm
 - **Add-ons**: prettier, eslint, tailwindcss, sveltekit-adapter, drizzle, better-auth, ai-tools
 
 ---

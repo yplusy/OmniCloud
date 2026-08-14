@@ -1,5 +1,6 @@
 import { createAuth } from '$lib/server/auth';
 import type { Session, User } from 'better-auth';
+import type { DrizzleD1Database } from 'drizzle-orm/d1';
 
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
@@ -19,6 +20,7 @@ declare global {
 			user?: User;
 			session?: Session;
 			auth: ReturnType<typeof createAuth>;
+			db: DrizzleD1Database<typeof schema>;
 		}
 
 		// interface Error {}

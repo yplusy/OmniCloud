@@ -6,6 +6,7 @@ import { redirect } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
 import { svelteKitHandler } from 'better-auth/svelte-kit';
 
+/** @type {import('@sveltejs/kit').Handle} */
 const handleDb = async ({ event, resolve }) => {
 	const d1 = event.platform?.env?.DB;
 	if (!d1) throw new Error('D1 binding "DB" not found - are you running with wrangler?');

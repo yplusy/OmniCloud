@@ -9,7 +9,6 @@ bun.lockb
 /static/
 /drizzle/
 
-/.github/
 auth.schema.js
 worker-configuration.d.ts
 wrangler.template.jsonc

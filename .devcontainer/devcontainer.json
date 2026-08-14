@@ -9,7 +9,10 @@
 		"ghcr.io/devcontainers/features/git-lfs:1": {}
 	},
 	// "forwardPorts": [],
-	// "postCreateCommand": "pnpm install",
+	"remoteEnv": {
+		"API_KEY": "${localEnv:API_KEY}"
+	},
+	"postCreateCommand": "pnpm setup && pnpm install -g opencode-ai",
 	"customizations": {
 		"vscode": {
 			"settings": {
