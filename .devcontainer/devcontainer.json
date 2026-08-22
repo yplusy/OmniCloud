@@ -10,7 +10,7 @@
 	},
 	// "forwardPorts": [],
 	"remoteEnv": {
-		"API_KEY": "${localEnv:API_KEY}"
+		"LLM_API_KEY": "${localEnv:LLM_API_KEY}"
 	},
 	"postCreateCommand": "pnpm setup && pnpm install -g opencode-ai",
 	"customizations": {

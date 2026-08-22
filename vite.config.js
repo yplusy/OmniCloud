@@ -2,9 +2,13 @@ import adapter from '@sveltejs/adapter-cloudflare';
 import { sveltekit } from '@sveltejs/kit/vite';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
-import pkg from './package.json';
+import pkg from './package.json' with { type: 'json' };
 
 export default defineConfig({
+	define: {
+		__APP_NAME__: JSON.stringify(pkg.name),
+		__APP_VERSION__: JSON.stringify(pkg.version)
+	},
 	plugins: [
 		tailwindcss(),
 		sveltekit({
@@ -20,9 +24,5 @@ export default defineConfig({
 				}
 			}
 		})
-	],
-	define: {
-		__APP_NAME__: JSON.stringify(pkg.name),
-		__APP_VERSION__: JSON.stringify(pkg.version)
-	}
+	]
 });

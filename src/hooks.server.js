@@ -9,10 +9,10 @@ import { svelteKitHandler } from 'better-auth/svelte-kit';
 /** @type {import('@sveltejs/kit').Handle} */
 const handleDb = async ({ event, resolve }) => {
 	const d1 = event.platform?.env?.DB;
-	if (!d1) throw new Error('D1 binding "DB" not found - are you running with wrangler?');
-	event.locals.db = getDb(d1);
+	if (d1) event.locals.db = getDb(d1);
 	return resolve(event);
 };
+
 /** @type {import('@sveltejs/kit').Handle} */
 const handleBetterAuth = async ({ event, resolve }) => {
 	if (!event.platform?.env?.DB)
@@ -31,27 +31,36 @@ const handleBetterAuth = async ({ event, resolve }) => {
 	return svelteKitHandler({ event, resolve, auth, building });
 };
 
-let isInitialized = false;
+/** @type {boolean} */
+let initialized = false;
+
 /** @type {import('@sveltejs/kit').Handle} */
 const handleInit = async ({ event, resolve }) => {
-	const acceptsHtml = event.request.headers.get('accept')?.includes('text/html');
-	if (!acceptsHtml) {
-		return resolve(event);
-	}
-	if (event.url.pathname === '/init') {
-		const { db } = event.locals;
-		const isUser = await db.select({ id: user.id }).from(user).limit(1);
-		if (isUser.length > 0) {
-			isInitialized = true;
-			throw redirect(307, '/');
+	const { db } = event.locals;
+	if (!db) return resolve(event);
+
+	const isInitRoute = event.url.pathname === '/init';
+	const isDocumentRequest =
+		event.request.method === 'GET' &&
+		(event.request.headers.get('accept') ?? '').includes('text/html');
+
+	if (!isDocumentRequest && !isInitRoute) return resolve(event);
+
+	if (isInitRoute || !initialized) {
+		try {
+			const rows = await db.select({ id: user.id }).from(user).limit(1);
+			initialized = rows.length > 0;
+		} catch {
+			initialized = false;
 		}
 	}
-	if (!isInitialized) {
-		if (event.url.pathname !== '/init') {
-			throw redirect(307, '/init');
-		}
-	}
+	event.locals.initialized = initialized;
+
+	if (!isDocumentRequest) return resolve(event);
+	if (!initialized && !isInitRoute) redirect(303, '/init');
+	if (initialized && isInitRoute) redirect(303, '/');
 	return resolve(event);
 };
+
 /** @type {import('@sveltejs/kit').Handle} */
 export const handle = sequence(handleDb, handleBetterAuth, handleInit);

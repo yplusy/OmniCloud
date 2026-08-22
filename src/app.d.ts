@@ -5,8 +5,8 @@ import type { DrizzleD1Database } from 'drizzle-orm/d1';
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
 declare global {
-	const __APP_NAME__: string;
-	const __APP_VERSION__: string;
+	declare const __APP_NAME__: string;
+	declare const __APP_VERSION__: string;
 
 	namespace App {
 		interface Platform {
@@ -21,6 +21,7 @@ declare global {
 			session?: Session;
 			auth: ReturnType<typeof createAuth>;
 			db: DrizzleD1Database<typeof schema>;
+			initialized: boolean;
 		}
 
 		// interface Error {}

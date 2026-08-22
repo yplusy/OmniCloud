@@ -3,7 +3,10 @@
 	"plugin": ["@sveltejs/opencode"],
 	"provider": {
 		"deepseek": {
-			"models": {}
+			"options": {
+				"apiKey": "{env:DEEPSEEK_API_KEY}"
+			}
 		}
-	}
+	},
+	"model": "deepseek/deepseek-v4-flash"
 }
