@@ -48,11 +48,7 @@
 				</DropdownGroup>
 				<DropdownGroup>
 					<form method="post" action="/logout" use:enhance>
-						<button
-							class="rounded-md bg-blue-600 px-4 py-2 text-white transition hover:bg-blue-700"
-						>
-							退出登录
-						</button>
+						<Button>退出登录</Button>
 					</form>
 				</DropdownGroup>
 			</Dropdown>

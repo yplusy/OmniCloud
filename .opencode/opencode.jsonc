@@ -1,19 +1,24 @@
 {
 	"$schema": "https://opencode.ai/config.json",
-	"plugin": ["@sveltejs/opencode"],
+	"plugin": ["@sveltejs/opencode", "@dietrichgebert/ponytail"],
 	"mcp": {
 		"better-auth": {
 			"type": "remote",
 			"url": "https://mcp.better-auth.com/mcp",
 			"enabled": true
+		},
+		"flowbite-svelte": {
+			"type": "local",
+			"command": ["node", "/home/node/.opencode/flowbite-svelte-mcp/build/server.js"],
+			"enabled": true
 		}
-	}
-	// "provider": {
-	// 	"deepseek": {
-	// 		"options": {
-	// 			"apiKey": "{env:DEEPSEEK_API_KEY}"
-	// 		}
-	// 	}
-	// },
-	// "model": "deepseek/deepseek-v4-flash"
+	},
+	"provider": {
+		"openrouter": {
+			"options": {
+				"apiKey": "{env:LLM_API_KEY}"
+			}
+		}
+	},
+	"model": "z-ai/glm-5.2:free"
 }
