@@ -1,5 +1,6 @@
 <script>
 	import { enhance } from '$app/forms';
+	import { resolve } from '$app/paths';
 	import favicon from '$lib/assets/favicon.svg';
 	import { Moon, Sun } from '@lucide/svelte';
 	import {
@@ -18,7 +19,7 @@
 </script>
 
 <Navbar fluid>
-	<NavBrand href="/">
+	<NavBrand href={resolve('/')}>
 		<img src={favicon} class="me-3 h-6 sm:h-9" alt="Logo" />
 		<span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">
 			{__APP_NAME__}
@@ -43,8 +44,7 @@
 					<span class="block truncate text-sm font-medium">{data.user.email}</span>
 				</DropdownHeader>
 				<DropdownGroup>
-					<DropdownItem href="/dash">面板</DropdownItem>
-					<DropdownItem href="/settings">设置</DropdownItem>
+					<DropdownItem href={resolve('/dash')}>面板</DropdownItem>
 				</DropdownGroup>
 				<DropdownGroup>
 					<form method="post" action="/logout" use:enhance>
