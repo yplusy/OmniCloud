@@ -57,11 +57,11 @@ jobs:
       - name: Inject Configuration to wrangler.jsonc
         run: |
           if [ "$DEPLOY_TYPE" = "workers" ]; then
-            export MODE_CONFIG='"main": ".svelte-kit/cloudflare/_worker.js", "assets": { "binding": "ASSETS", "directory": ".svelte-kit/cloudflare" }'
+            export TARGET_CONFIG='"main": ".svelte-kit/cloudflare/_worker.js", "assets": { "binding": "ASSETS", "directory": ".svelte-kit/cloudflare" }'
           else
-            export MODE_CONFIG='"pages_build_output_dir": ".svelte-kit/cloudflare"'
+            export TARGET_CONFIG='"pages_build_output_dir": ".svelte-kit/cloudflare"'
           fi
-          envsubst '${APP_NAME} ${MODE_CONFIG} ${DB_NAME} ${DB_ID}' < wrangler.template.jsonc > wrangler.jsonc
+          envsubst '${APP_NAME} ${TARGET_CONFIG} ${DB_NAME} ${DB_ID}' < wrangler.jsonc.template > wrangler.jsonc
 
       - run: pnpm run build
 

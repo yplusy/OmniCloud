@@ -12,4 +12,3 @@ bun.lockb
 /.agents/
 auth.schema.js
 worker-configuration.d.ts
-wrangler.template.jsonc
