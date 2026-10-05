@@ -1,18 +1,18 @@
 {
 	"name": "Node.js & TypeScript",
-	"image": "mcr.microsoft.com/devcontainers/typescript-node:5-24-trixie",
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:24",
 	"features": {
 		"ghcr.io/devcontainers/features/node:2": {
 			"version": "none",
 			"pnpmVersion": "latest"
-		},
-		"ghcr.io/devcontainers/features/git-lfs:1": {}
+		}
+		// "ghcr.io/devcontainers/features/git-lfs:1": {}
 	},
 	// "forwardPorts": [],
 	"remoteEnv": {
 		"LLM_API_KEY": "${localEnv:LLM_API_KEY}"
 	},
-	"postCreateCommand": "pnpm setup && pnpm install -g opencode-ai",
+	"postCreateCommand": "pnpm setup && source /home/node/.bashrc && pnpm add -g --allow-build=@opencode/cli @opencode/cli",
 	"customizations": {
 		"vscode": {
 			"settings": {
