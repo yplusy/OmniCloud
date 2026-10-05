@@ -1,13 +1,13 @@
 {
 	"name": "Node.js & TypeScript",
 	"image": "mcr.microsoft.com/devcontainers/typescript-node:24",
-	"features": {
-		"ghcr.io/devcontainers/features/node:2": {
-			"version": "none",
-			"pnpmVersion": "latest"
-		}
-		// "ghcr.io/devcontainers/features/git-lfs:1": {}
-	},
+	// "features": {
+	// 	"ghcr.io/devcontainers/features/node:2": {
+	// 		"version": "none",
+	// 		"pnpmVersion": "latest"
+	// 	},
+	// 	"ghcr.io/devcontainers/features/git-lfs:1": {}
+	// },
 	// "forwardPorts": [],
 	"remoteEnv": {
 		"LLM_API_KEY": "${localEnv:LLM_API_KEY}"
